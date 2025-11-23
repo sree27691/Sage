@@ -1,0 +1,16 @@
+{
+  "llm_models": {
+    "planner": "gpt-4o-mini",
+    "summarizer_trust": "gpt-4o",
+    "summarizer_chat": "gpt-4o",
+    "judge": "gpt-4o",
+    "chat": "gpt-4o",
+    "vlm_ocr": "gpt-4o",
+    "vlm_summarization": "gpt-4o"
+  },
+  "embedding_models": {
+    "primary_retrieval": "text-embedding-3-small",
+    "redundancy_layer": "text-embedding-3-large",
+    "image_embeddings": "openclip"
+  }
+}

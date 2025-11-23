@@ -1,0 +1,616 @@
+:root {
+  --bg-color: #0a0a0a;
+  --surface-color: #1a1a1a;
+  --surface-hover: #252525;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --accent-color: #FFC107;
+  /* Amber/Gold */
+  --accent-dim: rgba(255, 193, 7, 0.2);
+  --success-color: #4CAF50;
+  --error-color: #f44336;
+  --border-color: #333;
+  --font-family: 'Inter', sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  overflow-x: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* --- Header --- */
+header {
+  background-color: var(--bg-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-img {
+  width: 32px;
+  height: 32px;
+}
+
+.logo-text h1 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.logo-text p {
+  margin: 2px 0 0;
+  font-size: 11px;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --- Tab Switcher --- */
+.tab-switcher {
+  display: flex;
+  position: relative;
+  border-bottom: 2px solid var(--surface-color);
+}
+
+.tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 12px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.tab-btn.active {
+  color: var(--accent-color);
+}
+
+.tab-indicator {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 50%;
+  height: 2px;
+  background-color: var(--accent-color);
+  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* --- Main Content --- */
+main {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.view.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* --- Common Elements --- */
+.primary-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--accent-color);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.1s, opacity 0.2s;
+}
+
+.primary-btn:hover {
+  opacity: 0.9;
+}
+
+.primary-btn:active {
+  transform: scale(0.98);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* --- Pipeline Animation --- */
+.pipeline-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+.step.completed {
+  opacity: 1;
+  color: var(--success-color);
+}
+
+.step-icon {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--surface-color);
+  border: 2px solid var(--text-secondary);
+  transition: all 0.3s;
+}
+
+.step.active .step-icon {
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+  box-shadow: 0 0 10px var(--accent-dim);
+  animation: pulse 1.5s infinite;
+}
+
+.step.completed .step-icon {
+  border-color: var(--success-color);
+  background-color: var(--success-color);
+}
+
+.step span {
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.progress-bar-container {
+  height: 4px;
+  background-color: var(--surface-color);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 30%;
+  /* Animated via JS or CSS keyframes if simple */
+  background-color: var(--accent-color);
+  animation: progressIndeterminate 1.5s infinite linear;
+}
+
+@keyframes progressIndeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 var(--accent-dim);
+  }
+
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 6px rgba(255, 193, 7, 0);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 193, 7, 0);
+  }
+}
+
+/* --- Trust Card Results --- */
+.score-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.gauge-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.gauge {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.gauge-bg {
+  fill: none;
+  stroke: var(--surface-color);
+  stroke-width: 6;
+}
+
+.gauge-fill {
+  fill: none;
+  stroke: var(--accent-color);
+  stroke-width: 6;
+  stroke-dasharray: 283;
+  /* 2 * PI * 45 */
+  stroke-dashoffset: 283;
+  /* Start empty */
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.1s;
+  /* Smooth update from JS */
+}
+
+.score-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#tcs-score {
+  font-size: 36px;
+  font-weight: 700;
+  display: block;
+  line-height: 1;
+}
+
+#tcs-band {
+  font-size: 10px;
+  font-weight: 700;
+  background-color: var(--surface-color);
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+/* Conflict Banner */
+.conflict-banner {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(185, 28, 28, 0.1));
+    border: 1px solid rgba(220, 38, 38, 0.3);
+    border-radius: 8px;
+    padding: 0;
+    margin: 16px 0;
+    animation: slide-in 0.3s ease-out;
+}
+
+.conflict-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+.conflict-banner .icon {
+  font-size: 16px;
+}
+
+.conflict-banner .text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #ff8a80;
+}
+
+/* Trust Pillars */
+.trust-pillars {
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  align-items: flex-end;
+  margin-bottom: 30px;
+  padding: 0 10px;
+}
+
+.pillar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 14%;
+}
+
+.bar-container {
+  width: 100%;
+  height: 80px;
+  background-color: var(--surface-color);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pillar .bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  /* Start at 0 */
+  background-color: var(--text-secondary);
+  transition: height 1s cubic-bezier(0.4, 0.0, 0.2, 1);
+  border-radius: 4px 4px 0 0;
+}
+
+.pillar:nth-child(1) .bar {
+  background-color: #4CAF50;
+}
+
+/* Grounded */
+.pillar:nth-child(2) .bar {
+  background-color: #2196F3;
+}
+
+/* Accuracy */
+.pillar:nth-child(3) .bar {
+  background-color: #9C27B0;
+}
+
+/* Coverage */
+.pillar:nth-child(4) .bar {
+  background-color: #F44336;
+}
+
+/* Conflict */
+.pillar:nth-child(5) .bar {
+  background-color: #FF9800;
+}
+
+/* Uncertainty */
+
+.pillar label {
+  font-size: 9px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+/* Aspect Summaries */
+.aspects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.aspect-item {
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.aspect-header {
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.aspect-header:hover {
+  background-color: var(--surface-hover);
+}
+
+.aspect-score {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.aspect-score.high {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: #81c784;
+}
+
+.aspect-score.medium {
+  background-color: rgba(255, 193, 7, 0.2);
+  color: #ffd54f;
+}
+
+.aspect-score.low {
+  background-color: rgba(244, 67, 54, 0.2);
+  color: #e57373;
+}
+
+.aspect-content {
+  padding: 0 12px 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-color);
+  margin-top: -1px;
+  /* Hide border if collapsed logic was better, but simple toggle here */
+}
+
+.aspect-content.hidden {
+  display: none;
+}
+
+/* --- Chat View --- */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chat-history {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 16px;
+}
+
+.chat-message {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  animation: slideUpFade 0.3s ease-out forwards;
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-message.bot {
+  align-self: flex-start;
+  background-color: var(--surface-color);
+  color: var(--text-secondary);
+  border-bottom-left-radius: 2px;
+}
+
+.chat-message.user {
+  align-self: flex-end;
+  background-color: var(--accent-dim);
+  color: var(--accent-color);
+  /* Or white if contrast is poor, but amber text on dim amber bg might be ok or tweak */
+  color: #fff;
+  /* Better contrast */
+  background-color: rgba(255, 193, 7, 0.15);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  border-bottom-right-radius: 2px;
+}
+
+.quick-replies {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.quick-replies .chip {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 11px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.quick-replies .chip:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.chat-input-area {
+  display: flex;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+}
+
+#chat-input {
+  flex: 1;
+  background-color: var(--surface-color);
+  border: 1px solid transparent;
+  border-radius: 20px;
+  padding: 10px 16px;
+  color: white;
+  font-family: inherit;
+  font-size: 13px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#chat-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px var(--accent-dim);
+}
+
+#chat-send-btn {
+  background-color: var(--accent-color);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #000;
+  transition: transform 0.1s;
+}
+
+#chat-send-btn:active {
+  transform: scale(0.9);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

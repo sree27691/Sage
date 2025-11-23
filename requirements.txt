@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+python-dotenv
+openai
+anthropic
+google-generativeai
+chromadb
+beautifulsoup4
+requests
+fake-useragent
+pydantic
+sentence-transformers

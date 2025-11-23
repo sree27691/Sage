@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  /* Core Palette */
+  --background: 10, 10, 12;
+  /* Deep rich dark background */
+  --foreground: 255, 255, 255;
+
+  /* Brand Colors */
+  --sage-green: 124, 154, 146;
+  /* #7C9A92 - Original Brand */
+  --sage-accent: 79, 209, 197;
+  /* #4FD1C5 - Bright Accent */
+
+  /* Functional Colors (AI Principles) */
+  --trust-blue: 59, 130, 246;
+  /* #3B82F6 - High Confidence/Trust */
+  --caution-amber: 245, 158, 11;
+  /* #F59E0B - Uncertainty/Caution */
+  --danger-red: 239, 68, 68;
+  /* #EF4444 - Low Score/Error */
+
+  /* UI Elements */
+  --glass-border: 255, 255, 255, 0.1;
+  --glass-bg: 255, 255, 255, 0.05;
+}
+
+body {
+  color: rgb(var(--foreground));
+  background: rgb(var(--background));
+  font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+
+  .glass-button {
+    @apply bg-white/5 hover:bg-white/10 border border-white/10 transition-all duration-300;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}

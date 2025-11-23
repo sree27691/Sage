@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Sage Assistant</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="header-logo">
+        <img src="icons/logo-48.png" alt="Sage Bot" />
+      </div>
+      <h1>Sage Assistant</h1>
+      <p>Product Truth Engine</p>
+    </header>
+
+    <div id="main-view">
+      <button id="analyze-btn" class="primary-btn">
+        Analyze This Page
+      </button>
+      <div id="error-msg" class="hidden"></div>
+    </div>
+
+    <div id="loading-view" class="hidden">
+      <div class="spinner"></div>
+      <p>Analyzing product data...</p>
+    </div>
+
+    <div id="result-view" class="hidden">
+      <div class="score-card">
+        <div class="score-circle" id="tcs-score">--</div>
+        <div class="score-band" id="tcs-band">--</div>
+      </div>
+
+      <div class="verdict-section">
+        <h3>Verdict</h3>
+        <p id="verdict-text">--</p>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric">
+          <span id="metric-groundedness">--</span>
+          <label>Grounded</label>
+        </div>
+        <div class="metric">
+          <span id="metric-accuracy">--</span>
+          <label>Accuracy</label>
+        </div>
+        <div class="metric">
+          <span id="metric-coverage">--</span>
+          <label>Coverage</label>
+        </div>
+      </div>
+
+      <div id="aspects-list" class="aspects-list">
+        <!-- Aspects injected here -->
+      </div>
+
+      <!-- Chat Section -->
+      <div class="chat-section">
+        <h3>Ask Sage</h3>
+        <div id="chat-history" class="chat-history"></div>
+        <div class="chat-input-area">
+          <input type="text" id="chat-input" placeholder="Ask about the product..." />
+          <button id="chat-send-btn">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+
+</html>

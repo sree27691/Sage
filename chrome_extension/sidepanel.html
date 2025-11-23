@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sage Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-top">
+                <div class="logo-area">
+                    <img src="icons/icon48.png" alt="Sage Bot" class="logo-img" />
+                    <div class="logo-text">
+                        <h1>Sage Assistant</h1>
+                        <p>Product Truth Engine</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Switcher -->
+            <div class="tab-switcher">
+                <button class="tab-btn active" data-tab="trust-card">Trust Card</button>
+                <button class="tab-btn" data-tab="sage-chat">Sage Chat</button>
+                <div class="tab-indicator"></div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main>
+            <!-- View 1: Trust Card -->
+            <div id="trust-card-view" class="view active">
+
+                <!-- Analyze Button (Initial State) -->
+                <div id="initial-state">
+                    <button id="analyze-btn" class="primary-btn">
+                        Analyze This Page
+                    </button>
+                    <div id="error-msg" class="hidden"></div>
+                </div>
+
+                <!-- Pipeline Progress (Loading State) -->
+                <div id="pipeline-view" class="hidden">
+                    <div class="pipeline-steps">
+                        <div class="step" id="step-retrieving">
+                            <div class="step-icon"></div>
+                            <span>Retrieving</span>
+                        </div>
+                        <div class="step" id="step-analyzing">
+                            <div class="step-icon"></div>
+                            <span>Analyzing</span>
+                        </div>
+                        <div class="step" id="step-verifying">
+                            <div class="step-icon"></div>
+                            <span>Verifying</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+
+                <!-- Results (Success State) -->
+                <div id="result-view" class="hidden">
+
+                    <!-- Score Gauge -->
+                    <div class="score-section">
+                        <div class="gauge-container">
+                            <svg class="gauge" viewBox="0 0 100 100">
+                                <circle class="gauge-bg" cx="50" cy="50" r="45"></circle>
+                                <circle class="gauge-fill" cx="50" cy="50" r="45"></circle>
+                            </svg>
+                            <div class="score-display">
+                                <span id="tcs-score">0</span>
+                                <span id="tcs-band" class="hidden">PILOT</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conflict Banner -->
+                    <div id="conflict-banner" class="conflict-banner hidden">
+                        <div class="conflict-header">
+                            <span class="icon">&#9888;</span>
+                            <span class="text">Brand Claim Conflict Detected</span>
+                            <button class="expand-btn" id="conflict-expand">▼</button>
+                        </div>
+                        <div class="conflict-details hidden" id="conflict-details">
+                            <!-- Conflict details will be injected here -->
+                        </div>
+                    </div>
+
+                    <!-- Trust Pillars -->
+                    <div class="trust-pillars">
+                        <div class="pillar" data-metric="groundedness">
+                            <div class="bar-container">
+                                <div class="bar"></div>
+                            </div>
+                            <label>Grounded</label>
+                        </div>
+                        <div class="pillar" data-metric="accuracy">
+                            <div class="bar-container">
+                                <div class="bar"></div>
+                            </div>
+                            <label>Accuracy</label>
+                        </div>
+                        <div class="pillar" data-metric="coverage">
+                            <div class="bar-container">
+                                <div class="bar"></div>
+                            </div>
+                            <label>Coverage</label>
+                        </div>
+                        <div class="pillar" data-metric="conflict">
+                            <div class="bar-container">
+                                <div class="bar"></div>
+                            </div>
+                            <label>Conflict</label>
+                        </div>
+                        <div class="pillar" data-metric="uncertainty">
+                            <div class="bar-container">
+                                <div class="bar"></div>
+                            </div>
+                            <label>Uncertainty</label>
+                        </div>
+                    </div>
+
+                    <!-- Aspect Summaries (Accordion) -->
+                    <div id="aspects-list" class="aspects-list">
+                        <!-- Aspects will be injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- View 2: Sage Chat -->
+            <div id="sage-chat-view" class="view">
+                <div class="chat-container">
+                    <div id="chat-history" class="chat-history">
+                        <div class="chat-message bot">
+                            Hello! I'm Sage. I've analyzed this product. Ask me anything about its specs, reviews, or
+                            hidden details.
+                        </div>
+                    </div>
+
+                    <!-- Contextual Suggestions -->
+                    <div id="quick-replies" class="quick-replies hidden">
+                        <button class="chip">Is the battery life accurate?</button>
+                        <button class="chip">Common complaints?</button>
+                    </div>
+
+                    <div class="chat-input-area">
+                        <input type="text" id="chat-input" placeholder="Ask a question..." />
+                        <button id="chat-send-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="sidepanel.js"></script>
+</body>
+
+</html>
