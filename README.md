@@ -1,16 +1,3 @@
-# Sage Assistant
-
-Sage is a multi-agent product truth engine designed to deliver unbiased, evidence-backed product intelligence.
-
-## Project Structure
-
-- **`sage/agents/`**: Contains the implementation of all agents (Planner, Retriever, VLM, Summarizer, Judge).
-- **`sage/engine/`**: Contains the TCS (Truthful Coverage Score) Engine.
-- **`sage/models/`**: Pydantic data models (`schemas.py`).
-- **`sage/utils/`**: Utilities for LLM clients and Vector DB.
-- **`config/`**: Configuration files (`models_config.json`).
-- **`main.py`**: FastAPI application entry point.
-
 ## Setup
 
 1. **Install Dependencies**:
